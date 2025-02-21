@@ -1,3 +1,7 @@
 <script setup></script>
 
-<template></template>
+<template>
+  <main>
+    Mirer Balbino de Andrade Junior
+  </main>
+</template>

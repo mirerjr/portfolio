@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+    --font-dosis: "Dosis", "sans-serif";
+    --color-main: #263657;
+    --color-black: #1E1E24;
+    --color-white: #FFF9F9;
+}
+
+@font-face {
+    font-family: "Dosis";
+    src: url("/fonts/Dosis-VariableFont_wght.ttf")
+}
