@@ -5,14 +5,14 @@ import BaseSection from "./components/BaseSection.vue";
 <template>
   <header class="flex flex-col gap-6">
     <div>
-      <h1 class="font-bold">
+      <h1 class="text-3xl font-bold">
         Mirer Balbino
-        <span class="block font-normal leading-1">
-          de Andrade Junior
-        </span>
+        <span class="block leading-3 font-normal"> de Andrade Junior </span>
       </h1>
     </div>
-    <p class="text-xl">[] Desenvolvedor Full stack</p>
+    <p class="text-xl">
+      <fontAwesomeIcon icon="fa-solid fa-square" /> Desenvolvedor Full stack
+    </p>
   </header>
   <main>
     <section class="flex">
@@ -24,20 +24,25 @@ import BaseSection from "./components/BaseSection.vue";
         </p>
       </BaseSection>
       <BaseSection title="Contatos">
-        <ul>
+        <ul class="flex flex-col gap-2">
           <li>
-            []
-            <a href="https://github.com/mirerjr">@mirerjr</a>
+            <a href="https://github.com/mirerjr" class="flex gap-2">
+              <fontAwesomeIcon icon="fa-brands fa-github" />
+              @mirerjr
+            </a>
           </li>
           <li>
-            []
-            <a href="https://www.linkedin.com/in/mirer-balbino">
+            <a
+              href="https://www.linkedin.com/in/mirer-balbino"
+              class="flex gap-2"
+            >
+              <fontAwesomeIcon icon="fa-brands fa-linkedin" />
               mirer-balbino
             </a>
           </li>
           <li>
-            []
-            <a href="mailto:mirer.balbino@gmail.com">
+            <a href="mailto:mirer.balbino@gmail.com" class="flex gap-2">
+              <fontAwesomeIcon icon="fa-solid fa-envelope" />
               mirer.balbino@gmail.com
             </a>
           </li>
@@ -49,7 +54,7 @@ import BaseSection from "./components/BaseSection.vue";
         <article>
           <header>
             <h3>Transportae</h3>
-            <span>[]</span>
+            <fontAwesomeIcon icon="fa-solid fa-external-link" />
           </header>
           <p>
             Sistema para gerenciamento e acompanhamento das linhas de transporte
@@ -59,14 +64,14 @@ import BaseSection from "./components/BaseSection.vue";
         <article>
           <header>
             <h3>Support Tickets</h3>
-            <span>[]</span>
+            <fontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />
           </header>
           <p>Gestão de tickets de suporte que...</p>
         </article>
         <article>
           <header>
             <h3>GuardMyPdf</h3>
-            <span>[]</span>
+            <fontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />
           </header>
           <p>Aplicação que adiciona senha aos PDFs...</p>
         </article>
@@ -78,14 +83,14 @@ import BaseSection from "./components/BaseSection.vue";
           <h4>Procuradoria Geral do Município de Aracaju (PGMA)</h4>
           <ul>
             <li>
-              []
+              <fontAwesomeIcon icon="fa-regular fa-circle" />
               <div>
                 <span>06/2023 - Hoje</span>
                 <p>Analista de Sistemas Pleno (SergipeTec)</p>
               </div>
             </li>
             <li>
-              []
+              <fontAwesomeIcon icon="fa-regular fa-circle" />
               <div>
                 <span>12/2020 - 06/2023</span>
                 <p>Desenvolvedor (PGMA)</p>
@@ -97,7 +102,7 @@ import BaseSection from "./components/BaseSection.vue";
           <h4>Instituto Federal de Sergipe (IFS)</h4>
           <ul>
             <li>
-              []
+              <fontAwesomeIcon icon="fa-regular fa-circle" />
               <div>
                 <span>2019</span>
                 <p>Trainee - suporte</p>
@@ -111,14 +116,14 @@ import BaseSection from "./components/BaseSection.vue";
           <h4>Instituto Federal de Sergipe (IFS)</h4>
           <ul>
             <li>
-              []
+              <fontAwesomeIcon icon="fa-regular fa-circle" />
               <div>
                 <span>2020-2023</span>
                 <p>Tecnólogo em Análise e Desenvolvimento de sistemas</p>
               </div>
             </li>
             <li>
-              []
+              <fontAwesomeIcon icon="fa-regular fa-circle" />
               <div>
                 <span>2017-2019</span>
                 <p>Técnico em Informática</p>
@@ -133,19 +138,12 @@ import BaseSection from "./components/BaseSection.vue";
 
 <style>
 @layer base {
-  h1 {
-    font-size: var(--text-3xl);
-  }
-  h2 {
-    font-size: var(--text-xl);
-    font-weight: bold;
-  }
   h3 {
     font-size: var(--text-xl);
     font-weight: 600;
   }
   h4 {
-    font-size: var(--text-lg);  
+    font-size: var(--text-lg);
   }
 }
 </style>
