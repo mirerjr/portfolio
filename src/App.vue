@@ -3,8 +3,10 @@ import BaseSection from "./components/BaseSection.vue";
 </script>
 
 <template>
-  <div class="flex flex-col gap-12">
-    <header class="m-4 flex flex-col gap-4">
+  <div class="grid h-screen grid-cols-12 grid-rows-[auto_1fr] gap-y-8 p-4">
+    <header
+      class="col-span-full flex flex-col gap-4 lg:col-start-2 lg:col-end-10 xl:col-start-3 xl:col-end-6 2xl:col-start-4 2xl:col-end-6"
+    >
       <div>
         <h1 class="text-3xl font-bold">
           Mirer Balbino
@@ -15,7 +17,9 @@ import BaseSection from "./components/BaseSection.vue";
         <fontAwesomeIcon icon="fa-solid fa-square" /> Desenvolvedor Full stack
       </p>
     </header>
-    <main class="mx-auto flex max-w-3xl flex-col gap-8 px-4">
+    <main
+      class="col-span-full mx-auto flex max-w-3xl flex-col gap-8 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11"
+    >
       <section
         class="flex flex-col gap-8 sm:flex-row sm:justify-between sm:gap-4"
       >
