@@ -1,8 +1,40 @@
 <script setup>
+import { ref } from "vue";
 import BaseSection from "./components/BaseSection.vue";
 import BaseTimeline from "./components/BaseTimeline.vue";
 import PersonalLink from "./components/PersonalLink.vue";
+import ProjectCard from "./components/ProjectCard.vue";
 import TimelineItem from "./components/TimelineItem.vue";
+
+const projects = ref([
+  {
+    title: "Transportae",
+    description:
+      "Sistema para gerenciamento e acompanhamento das linhas de transporte escolar, para uso pela prefeitura e pelos estudantes",
+    link: "https://github.com/mirerjr/transportae-ui",
+    isExtended: true,
+  },
+  {
+    title: "Support Tickets",
+    description: "Gestão de tickets de suporte que",
+    isExtended: false,
+  },
+  {
+    title: "GuardMyPdf",
+    description: "Aplicação que adiciona senha aos PDFs",
+    isExtended: false,
+  },
+]);
+
+function handleExtendedProject(title) {
+  projects.value.forEach((project) => {
+    if (project.title === title) {
+      project.isExtended = true;
+    } else {
+      project.isExtended = false;
+    }
+  });
+}
 </script>
 
 <template>
@@ -55,40 +87,19 @@ import TimelineItem from "./components/TimelineItem.vue";
         </BaseSection>
       </section>
       <BaseSection title="Meus projetos">
-        <div class="flex gap-4">
-          <article class="rounded-lg border border-main">
-            <header class="flex items-center justify-between border-b p-2">
-              <h3 class="text-lg font-semibold">Transportae</h3>
-              <fontAwesomeIcon icon="fa-solid fa-external-link" />
-            </header>
-            <p class="max-w-sm p-2">
-              Sistema para gerenciamento e acompanhamento das linhas de
-              transporte escolar, para uso pela prefeitura e pelos estudantes
-            </p>
-          </article>
-          <div class="flex flex-col gap-4">
-            <article class="cursor-pointer rounded-lg border border-main">
-              <header class="flex items-center justify-between px-2">
-                <h3 class="text-lg font-semibold">Support Tickets</h3>
-                <fontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />
-              </header>
-              <p class="max-w-sm px-2 py-1">
-                Gestão de tickets de suporte que...
-              </p>
-            </article>
-            <article class="cursor-pointer rounded-lg border border-main">
-              <header class="flex items-center justify-between px-2">
-                <h3 class="text-lg font-semibold">GuardMyPdf</h3>
-                <fontAwesomeIcon icon="fa-solid fa-arrow-down-short-wide" />
-              </header>
-              <p class="max-w-sm px-2 py-1">
-                Aplicação que adiciona senha aos PDFs...
-              </p>
-            </article>
-          </div>
+        <div class="grid grid-cols-2 grid-rows-2 gap-4">
+          <ProjectCard
+            v-for="project in projects"
+            :key="project.title"
+            :title="project.title"
+            :description="project.description"
+            :link="project.link"
+            :modelValue="project.isExtended"
+            @extended="(title) => handleExtendedProject(title)"
+          />
         </div>
       </BaseSection>
-      <div class="flex flex-col gap-8 sm:grid grid-cols-2 sm:gap-2">
+      <div class="flex grid-cols-2 flex-col gap-8 sm:grid sm:gap-2">
         <BaseSection title="Experiências">
           <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
             <TimelineItem
@@ -101,10 +112,7 @@ import TimelineItem from "./components/TimelineItem.vue";
             />
           </BaseTimeline>
           <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
-            <TimelineItem
-              date="2019"
-              content="Trainee - suporte"
-            />
+            <TimelineItem date="2019" content="Trainee - suporte" />
           </BaseTimeline>
         </BaseSection>
         <BaseSection title="Escolaridade">
@@ -113,10 +121,7 @@ import TimelineItem from "./components/TimelineItem.vue";
               date="2020-2023"
               content="Tecnólogo em Análise e Desenvolvimento de sistemas"
             />
-            <TimelineItem
-              date="2017-2019"
-              content="Técnico em Informática"
-            />
+            <TimelineItem date="2017-2019" content="Técnico em Informática" />
           </BaseTimeline>
         </BaseSection>
       </div>
