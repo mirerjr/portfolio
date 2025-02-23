@@ -87,7 +87,7 @@ function handleExtendedProject(title) {
         </BaseSection>
       </section>
       <BaseSection title="Meus projetos">
-        <div class="grid grid-cols-2 grid-rows-2 gap-4">
+        <div class="grid gap-4">
           <ProjectCard
             v-for="project in projects"
             :key="project.title"

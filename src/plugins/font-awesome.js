@@ -3,8 +3,8 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import {
   faEnvelope,
   faExternalLink,
-  faArrowDownShortWide,
   faSquare,
+  faExpand,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 
@@ -16,7 +16,7 @@ library.add(
   // Solid
   faEnvelope,
   faExternalLink,
-  faArrowDownShortWide,
+  faExpand,
   faSquare,
 
   // Regular
