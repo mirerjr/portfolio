@@ -99,8 +99,10 @@ function handleExtendedProject(title) {
           />
         </div>
       </BaseSection>
-      <div class="flex grid-cols-2 flex-col gap-8 sm:grid sm:gap-2">
-        <BaseSection title="Experiências">
+      <div
+        class="flex-col justify-between gap-8 sm:grid sm:grid-cols-[1fr_auto] sm:gap-4"
+      >
+        <BaseSection title="Experiências" class="w-sm">
           <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
             <TimelineItem
               date="06/2023 - Hoje"
@@ -115,7 +117,7 @@ function handleExtendedProject(title) {
             <TimelineItem date="2019" content="Trainee - suporte" />
           </BaseTimeline>
         </BaseSection>
-        <BaseSection title="Escolaridade">
+        <BaseSection title="Escolaridade" class="w-sm sm:w-2xs">
           <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
             <TimelineItem
               date="2020-2023"
