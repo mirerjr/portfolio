@@ -1,5 +1,6 @@
 <script setup>
 import BaseSection from "./components/BaseSection.vue";
+import PersonalLink from "./components/PersonalLink.vue";
 </script>
 
 <template>
@@ -33,33 +34,21 @@ import BaseSection from "./components/BaseSection.vue";
         </BaseSection>
         <BaseSection title="Links" class="order-first sm:order-last">
           <ul class="flex flex-row flex-wrap gap-1 gap-x-4 sm:flex-col">
-            <li>
-              <a
-                href="https://github.com/mirerjr"
-                class="flex items-center gap-2"
-              >
-                <fontAwesomeIcon icon="fa-brands fa-github" class="w-5" />
-                @mirerjr
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/mirer-balbino"
-                class="flex items-center gap-2"
-              >
-                <fontAwesomeIcon icon="fa-brands fa-linkedin" class="w-5" />
-                mirer-balbino
-              </a>
-            </li>
-            <li>
-              <a
-                href="mailto:mirer.balbino@gmail.com"
-                class="flex items-center gap-2"
-              >
-                <fontAwesomeIcon icon="fa-solid fa-envelope" class="w-5" />
-                mirer.balbino@gmail.com
-              </a>
-            </li>
+            <PersonalLink
+              link="https://github.com/mirerjr"
+              icon="fa-brands fa-github"
+              label="@mirerjr"
+            />
+            <PersonalLink
+              link="https://www.linkedin.com/in/mirer-balbino"
+              icon="fa-brands fa-linkedin"
+              label="mirer-balbino"
+            />
+            <PersonalLink
+              link="mailto:mirer.balbino@gmail.com"
+              icon="fa-solid fa-envelope"
+              label="mirer.balbino@gmail.com"
+            />
           </ul>
         </BaseSection>
       </section>
