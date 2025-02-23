@@ -1,6 +1,8 @@
 <script setup>
 import BaseSection from "./components/BaseSection.vue";
+import BaseTimeline from "./components/BaseTimeline.vue";
 import PersonalLink from "./components/PersonalLink.vue";
+import TimelineItem from "./components/TimelineItem.vue";
 </script>
 
 <template>
@@ -86,63 +88,36 @@ import PersonalLink from "./components/PersonalLink.vue";
           </div>
         </div>
       </BaseSection>
-      <div class="flex flex-col justify-between gap-8 sm:flex-row sm:gap-2">
+      <div class="flex flex-col gap-8 sm:grid grid-cols-2 sm:gap-2">
         <BaseSection title="Experiências">
-          <article class="flex flex-col gap-4 pl-2">
-            <h3 class="font-semibold">
-              Procuradoria Geral do Município de Aracaju
-            </h3>
-            <ul class="flex flex-col gap-4">
-              <li class="flex items-baseline gap-2">
-                <fontAwesomeIcon icon="fa-regular fa-circle" />
-                <div>
-                  <span class="text-sm">06/2023 - Hoje</span>
-                  <p>Analista de Sistemas Pleno (SergipeTec)</p>
-                </div>
-              </li>
-              <li class="flex items-baseline gap-2">
-                <fontAwesomeIcon icon="fa-regular fa-circle" />
-                <div>
-                  <span class="text-sm">12/2020 - 06/2023</span>
-                  <p>Desenvolvedor (Procuradoria)</p>
-                </div>
-              </li>
-            </ul>
-          </article>
-          <article class="flex flex-col gap-4 pl-2">
-            <h3 class="font-semibold">Instituto Federal de Sergipe (IFS)</h3>
-            <ul class="flex flex-col gap-4">
-              <li class="flex items-baseline gap-2">
-                <fontAwesomeIcon icon="fa-regular fa-circle" />
-                <div>
-                  <span class="text-sm">2019</span>
-                  <p>Trainee - suporte</p>
-                </div>
-              </li>
-            </ul>
-          </article>
+          <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
+            <TimelineItem
+              date="06/2023 - Hoje"
+              content="Analista de Sistemas Pleno (SergipeTec)"
+            />
+            <TimelineItem
+              date="12/2020 - 06/2023"
+              content="Desenvolvedor (Procuradoria)"
+            />
+          </BaseTimeline>
+          <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
+            <TimelineItem
+              date="2019"
+              content="Trainee - suporte"
+            />
+          </BaseTimeline>
         </BaseSection>
         <BaseSection title="Escolaridade">
-          <article class="flex flex-col gap-4 pl-2">
-            <h3 class="font-semibold">Instituto Federal de Sergipe (IFS)</h3>
-            <ul class="flex flex-col gap-4">
-              <li class="flex items-baseline gap-2">
-                <fontAwesomeIcon icon="fa-regular fa-circle" />
-                <div>
-                  <span class="text-sm">2020-2023</span>
-                  <p class="block">Tecnólogo em Análise e</p>
-                  <p>Desenvolvimento de sistemas</p>
-                </div>
-              </li>
-              <li class="flex items-baseline gap-2">
-                <fontAwesomeIcon icon="fa-regular fa-circle" />
-                <div>
-                  <span class="text-sm">2017-2019</span>
-                  <p>Técnico em Informática</p>
-                </div>
-              </li>
-            </ul>
-          </article>
+          <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
+            <TimelineItem
+              date="2020-2023"
+              content="Tecnólogo em Análise e Desenvolvimento de sistemas"
+            />
+            <TimelineItem
+              date="2017-2019"
+              content="Técnico em Informática"
+            />
+          </BaseTimeline>
         </BaseSection>
       </div>
     </main>
