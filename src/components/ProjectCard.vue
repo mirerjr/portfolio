@@ -43,7 +43,7 @@ function handleExtend() {
     class="cursor-pointer rounded-lg border border-main transition duration-300 ease-in-out"
     :class="{
       'hover:-translate-y-0.5 sm:min-w-[60%]': isExtended,
-      'w-full border-dashed opacity-60 select-none hover:opacity-100':
+      'w-full border-dashed opacity-70 select-none hover:opacity-100':
         !isExtended,
     }"
     @click="handleExtend()"
