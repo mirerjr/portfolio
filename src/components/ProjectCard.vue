@@ -42,9 +42,8 @@ function handleExtend() {
   <article
     class="cursor-pointer rounded-lg border border-main transition duration-300 ease-in-out"
     :class="{
-      'w-sm hover:-translate-y-0.5 sm:col-start-1 sm:col-end-2 sm:row-span-2 sm:row-start-1':
-        isExtended,
-      'w-sm border-dashed opacity-60 select-none hover:opacity-100 sm:col-start-2 sm:w-2xs':
+      'hover:-translate-y-0.5 sm:min-w-[60%]': isExtended,
+      'w-full border-dashed opacity-60 select-none hover:opacity-100':
         !isExtended,
     }"
     @click="handleExtend()"

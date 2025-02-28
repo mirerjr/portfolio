@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import BaseSection from "./components/BaseSection.vue";
 import BaseTimeline from "./components/BaseTimeline.vue";
 import PersonalLink from "./components/PersonalLink.vue";
@@ -26,6 +26,13 @@ const projects = ref([
   },
 ]);
 
+const extendedProject = computed(() =>
+  projects.value.find((p) => p.isExtended),
+);
+const nonExtendedProjects = computed(() =>
+  projects.value.filter((p) => !p.isExtended),
+);
+
 function handleExtendedProject(title) {
   projects.value.forEach((project) => {
     if (project.title === title) {
@@ -38,58 +45,64 @@ function handleExtendedProject(title) {
 </script>
 
 <template>
-  <div class="grid h-screen grid-cols-12 grid-rows-[auto_1fr] gap-y-8 p-4">
-    <header
+  <header class="grid w-full grid-cols-12 p-4">
+    <div
       class="col-span-full flex flex-col gap-4 lg:col-start-2 lg:col-end-10 xl:col-start-3 xl:col-end-6 2xl:col-start-4 2xl:col-end-6"
     >
-      <div>
-        <h1 class="text-3xl font-bold">
-          Mirer Balbino
-          <span class="block leading-3 font-normal"> de Andrade Junior </span>
-        </h1>
-      </div>
+      <h1 class="text-3xl font-bold">
+        Mirer Balbino
+        <span class="block leading-3 font-normal"> de Andrade Junior </span>
+      </h1>
       <p class="text-xl">
         <fontAwesomeIcon icon="fa-solid fa-square" /> Desenvolvedor Full stack
       </p>
-    </header>
-    <main
-      class="col-span-full mx-auto flex max-w-3xl flex-col gap-8 md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11"
+    </div>
+  </header>
+  <main
+    class="mx-auto grid w-full max-w-3xl grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-8 p-4"
+  >
+    <BaseSection title="Sobre mim" class="order-2 col-span-2 sm:order-1">
+      <p>
+        Experiência no desenvolvimento de aplicações REST usando Java (Grails,
+        Spring) e JavaScript (Vue.js). Proativo e metódico, busco entregar
+        soluções que otimizem processos e melhorem a experiência do usuário.
+      </p>
+    </BaseSection>
+    <BaseSection
+      title="Links"
+      class="order-1 col-span-2 sm:order-2 sm:col-span-1 sm:ml-auto"
     >
-      <section
-        class="flex flex-col gap-8 sm:flex-row sm:justify-between sm:gap-4"
-      >
-        <BaseSection title="Sobre mim" class="max-w-md">
-          <p>
-            Experiência no desenvolvimento de aplicações REST usando Java
-            (Grails, Spring) e JavaScript (Vue.js). Proativo e metódico, busco
-            entregar soluções que otimizem processos e melhorem a experiência do
-            usuário.
-          </p>
-        </BaseSection>
-        <BaseSection title="Links" class="order-first sm:order-last">
-          <ul class="flex flex-row flex-wrap gap-1 gap-x-4 sm:flex-col">
-            <PersonalLink
-              link="https://github.com/mirerjr"
-              icon="fa-brands fa-github"
-              label="@mirerjr"
-            />
-            <PersonalLink
-              link="https://www.linkedin.com/in/mirer-balbino"
-              icon="fa-brands fa-linkedin"
-              label="mirer-balbino"
-            />
-            <PersonalLink
-              link="mailto:mirer.balbino@gmail.com"
-              icon="fa-solid fa-envelope"
-              label="mirer.balbino@gmail.com"
-            />
-          </ul>
-        </BaseSection>
-      </section>
-      <BaseSection title="Meus projetos">
-        <div class="grid gap-4">
+      <ul class="flex flex-row flex-wrap gap-1 gap-x-4 sm:flex-col">
+        <PersonalLink
+          link="https://github.com/mirerjr"
+          icon="fa-brands fa-github"
+          label="@mirerjr"
+        />
+        <PersonalLink
+          link="https://www.linkedin.com/in/mirer-balbino"
+          icon="fa-brands fa-linkedin"
+          label="mirer-balbino"
+        />
+        <PersonalLink
+          link="mailto:mirer.balbino@gmail.com"
+          icon="fa-solid fa-envelope"
+          label="mirer.balbino@gmail.com"
+        />
+      </ul>
+    </BaseSection>
+    <BaseSection title="Meus projetos" class="order-3 col-span-2 sm:col-span-3">
+      <div class="flex w-full flex-col gap-4 sm:flex-row">
+        <ProjectCard
+          :title="extendedProject.title"
+          :description="extendedProject.description"
+          :link="extendedProject.link"
+          :modelValue="extendedProject.isExtended"
+        />
+        <div
+          class="flex max-h-[35vh] w-full flex-col gap-4 overflow-y-auto sm:max-h-[20vh]"
+        >
           <ProjectCard
-            v-for="project in projects"
+            v-for="project in nonExtendedProjects"
             :key="project.title"
             :title="project.title"
             :description="project.description"
@@ -98,35 +111,31 @@ function handleExtendedProject(title) {
             @extended="(title) => handleExtendedProject(title)"
           />
         </div>
-      </BaseSection>
-      <div
-        class="flex-col justify-between gap-8 sm:grid sm:grid-cols-[1fr_auto] sm:gap-4"
-      >
-        <BaseSection title="Experiências" class="w-sm">
-          <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
-            <TimelineItem
-              date="06/2023 - Hoje"
-              content="Analista de Sistemas Pleno (SergipeTec)"
-            />
-            <TimelineItem
-              date="12/2020 - 06/2023"
-              content="Desenvolvedor (Procuradoria)"
-            />
-          </BaseTimeline>
-          <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
-            <TimelineItem date="2019" content="Trainee - suporte" />
-          </BaseTimeline>
-        </BaseSection>
-        <BaseSection title="Escolaridade" class="w-sm sm:w-2xs">
-          <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
-            <TimelineItem
-              date="2020-2023"
-              content="Tecnólogo em Análise e Desenvolvimento de sistemas"
-            />
-            <TimelineItem date="2017-2019" content="Técnico em Informática" />
-          </BaseTimeline>
-        </BaseSection>
       </div>
-    </main>
-  </div>
+    </BaseSection>
+    <BaseSection title="Experiência" class="order-4 col-span-2">
+      <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
+        <TimelineItem
+          date="06/2023 - Hoje"
+          content="Analista de Sistemas Pleno (SergipeTec)"
+        />
+        <TimelineItem
+          date="12/2020 - 06/2023"
+          content="Desenvolvedor (Procuradoria)"
+        />
+      </BaseTimeline>
+      <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
+        <TimelineItem date="2019" content="Trainee - suporte" />
+      </BaseTimeline>
+    </BaseSection>
+    <BaseSection title="Escolaridade" class="order-5">
+      <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
+        <TimelineItem
+          date="2020-2023"
+          content="Tecnólogo em Análise e Desenvolvimento de sistemas"
+        />
+        <TimelineItem date="2017-2019" content="Técnico em Informática" />
+      </BaseTimeline>
+    </BaseSection>
+  </main>
 </template>
