@@ -1,47 +1,9 @@
 <script setup>
-import { computed, ref } from "vue";
 import BaseSection from "./components/BaseSection.vue";
 import BaseTimeline from "./components/BaseTimeline.vue";
 import PersonalLink from "./components/PersonalLink.vue";
-import ProjectCard from "./components/ProjectCard.vue";
+import ProjectsSection from "./components/ProjectsSection.vue";
 import TimelineItem from "./components/TimelineItem.vue";
-
-const projects = ref([
-  {
-    title: "Transportae",
-    description:
-      "Sistema para gerenciamento e acompanhamento das linhas de transporte escolar, para uso pela prefeitura e pelos estudantes",
-    link: "https://github.com/mirerjr/transportae-ui",
-    isExtended: true,
-  },
-  {
-    title: "Support Tickets",
-    description: "Gestão de tickets de suporte que",
-    isExtended: false,
-  },
-  {
-    title: "GuardMyPdf",
-    description: "Aplicação que adiciona senha aos PDFs",
-    isExtended: false,
-  },
-]);
-
-const extendedProject = computed(() =>
-  projects.value.find((p) => p.isExtended),
-);
-const nonExtendedProjects = computed(() =>
-  projects.value.filter((p) => !p.isExtended),
-);
-
-function handleExtendedProject(title) {
-  projects.value.forEach((project) => {
-    if (project.title === title) {
-      project.isExtended = true;
-    } else {
-      project.isExtended = false;
-    }
-  });
-}
 </script>
 
 <template>
@@ -91,27 +53,7 @@ function handleExtendedProject(title) {
       </ul>
     </BaseSection>
     <BaseSection title="Meus projetos" class="order-3 col-span-2 sm:col-span-3">
-      <div class="flex w-full flex-col gap-4 sm:flex-row">
-        <ProjectCard
-          :title="extendedProject.title"
-          :description="extendedProject.description"
-          :link="extendedProject.link"
-          :modelValue="extendedProject.isExtended"
-        />
-        <div
-          class="flex max-h-[35vh] w-full flex-col gap-4 overflow-y-auto sm:max-h-[20vh]"
-        >
-          <ProjectCard
-            v-for="project in nonExtendedProjects"
-            :key="project.title"
-            :title="project.title"
-            :description="project.description"
-            :link="project.link"
-            :modelValue="project.isExtended"
-            @extended="(title) => handleExtendedProject(title)"
-          />
-        </div>
-      </div>
+      <ProjectsSection />
     </BaseSection>
     <BaseSection title="Experiência" class="order-4 col-span-2">
       <BaseTimeline header="Procuradoria Geral do Município de Aracaju">

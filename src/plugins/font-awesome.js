@@ -4,7 +4,6 @@ import {
   faEnvelope,
   faExternalLink,
   faSquare,
-  faExpand,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 
@@ -16,7 +15,6 @@ library.add(
   // Solid
   faEnvelope,
   faExternalLink,
-  faExpand,
   faSquare,
 
   // Regular

@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 
-const emit = defineEmits(["extended"]);
+const emit = defineEmits(["expand"]);
 
 const props = defineProps({
   title: {
@@ -12,9 +12,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  modelValue: {
+  expanded: {
     type: Boolean,
-    required: true,
+    default: false,
   },
   link: {
     type: String,
@@ -22,16 +22,13 @@ const props = defineProps({
   },
 });
 
-const isExtended = defineModel({ type: Boolean, default: false });
-
 const descriptionText = computed(() =>
-  isExtended.value ? props.description : "Clique para ver mais",
+  props.expanded ? props.description : "Clique para ver mais",
 );
 
-function handleExtend() {
-  if (!isExtended.value) {
-    isExtended.value = true;
-    emit("extended", props.title);
+function handleExpand() {
+  if (!props.expanded) {
+    emit("expand", props.title);
   } else if (props.link) {
     window.open(props.link, "_blank");
   }
@@ -40,23 +37,21 @@ function handleExtend() {
 
 <template>
   <article
-    class="cursor-pointer rounded-lg border border-main transition duration-300 ease-in-out"
+    class="cursor-pointer rounded-lg border border-main will-change-transform backface-hidden hover:transition hover:duration-300 hover:ease-in-out"
     :class="{
-      'hover:-translate-y-0.5 sm:min-w-[60%]': isExtended,
-      'w-full border-dashed opacity-70 select-none hover:opacity-100':
-        !isExtended,
+      'hover:-translate-y-0.5': props.expanded,
+      'border-dashed opacity-70 select-none hover:opacity-100': !props.expanded,
     }"
-    @click="handleExtend()"
+    @click="handleExpand()"
   >
     <header
       class="flex items-center justify-between px-2"
-      :class="{ 'border-b py-2': isExtended }"
+      :class="{ 'border-b py-2': props.expanded }"
     >
-      <h3 class="text-lg font-semibold">{{ title }}</h3>
-      <fontAwesomeIcon v-if="isExtended" icon="fa-solid fa-external-link" />
-      <fontAwesomeIcon v-else icon="fa-solid fa-expand" />
+      <h3 class="truncate text-lg font-semibold">{{ title }}</h3>
+      <fontAwesomeIcon v-if="props.expanded" icon="fa-solid fa-external-link" />
     </header>
-    <p class="p-2" :class="{ truncate: !isExtended }">
+    <p class="p-2" :class="{ truncate: !props.expanded }">
       <slot>
         {{ descriptionText }}
       </slot>
