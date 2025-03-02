@@ -1,5 +1,5 @@
 <script setup>
-import { ref, TransitionGroup, nextTick } from "vue";
+import { ref, TransitionGroup, nextTick, useTemplateRef } from "vue";
 import ProjectCard from "./ProjectCard.vue";
 
 const projects = ref([
@@ -25,21 +25,18 @@ const projects = ref([
   },
 ]);
 
+const cardsRefs = useTemplateRef("cards");
 const isExpandingProject = ref(false);
 
 async function setNextExpandedProject(title) {
   if (isExpandingProject.value) return;
   isExpandingProject.value = true;
-  const previousIndex = projects.value.findIndex((p) => p.isExpanded);
   const nextIndex = projects.value.findIndex((p) => p.title === title);
-  const isNextProjectStartStack = nextIndex - previousIndex == 1;
 
   highlightProjectBeforeExpand(nextIndex);
-  if (isNextProjectStartStack) {
-    await handleProjectExpandStack(nextIndex + 1);
-  }
+  await expandSubsequentProjects(nextIndex);
   await expandProject(title);
-
+  focusExpandedCard();
   isExpandingProject.value = false;
 }
 
@@ -49,8 +46,13 @@ function highlightProjectBeforeExpand(index) {
     "col-span-4 bg-main text-white opacity-60 hover:!opacity-60";
 }
 
-async function handleProjectExpandStack(startIndex) {
-  for (let i = startIndex; i < projects.value.length; i++) {
+/**
+ * Expands all projects below the current one, considering that index 0
+ * is the expanded project and 1 is top non-expanded project on the column
+ */
+async function expandSubsequentProjects(nextIndex) {
+  if (nextIndex != 1) return;
+  for (let i = nextIndex + 1; i < projects.value.length; i++) {
     const projectToExpand = projects.value[i];
     await expandProject(projectToExpand.title);
   }
@@ -71,6 +73,18 @@ async function expandProject(title) {
   projects.value.sort((project, _) => (project.isExpanded ? -1 : 1));
   await nextTick();
 }
+
+/**
+ * Utilises the focus() and props (by defineExpose) to focus  
+ * the current expanded ProjectCard after the animation
+ */
+function focusExpandedCard() {
+  const currentTitle = projects.value.find((p) => p.isExpanded).title;
+  const currentRef = cardsRefs.value?.find((card) => {
+    return card.props.title === currentTitle;
+  });
+  currentRef?.focus();
+}
 </script>
 
 <template>
@@ -88,6 +102,7 @@ async function expandProject(title) {
       :link="project.link"
       :expanded="project.isExpanded"
       :class="project.class"
+      ref="cards"
       @expand="(title) => setNextExpandedProject(title)"
     />
   </TransitionGroup>

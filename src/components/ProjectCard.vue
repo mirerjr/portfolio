@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, useTemplateRef } from "vue";
 
 const emit = defineEmits(["expand"]);
 
@@ -22,6 +22,14 @@ const props = defineProps({
   },
 });
 
+const cardRef = useTemplateRef("projectCard");
+
+const titleText = computed(() =>
+  props.expanded
+    ? `Acessar link do projeto ${props.title}`
+    : `Exibir detalhes do projeto ${props.title}`,
+);
+
 const descriptionText = computed(() =>
   props.expanded ? props.description : "Clique para ver mais",
 );
@@ -33,16 +41,29 @@ function handleExpand() {
     window.open(props.link, "_blank");
   }
 }
+
+function focus() {
+  cardRef.value?.focus();
+}
+
+defineExpose({ focus, props });
 </script>
 
 <template>
   <article
+    tabindex="0"
+    role="button"
+    ref="projectCard"
+    :title="titleText"
+    :aria-expanded="props.expanded"
     class="cursor-pointer rounded-lg border border-main will-change-transform backface-hidden hover:transition hover:duration-300 hover:ease-in-out"
     :class="{
       'hover:-translate-y-0.5': props.expanded,
       'border-dashed opacity-70 select-none hover:opacity-100': !props.expanded,
     }"
     @click="handleExpand()"
+    @keydown.enter.prevent="handleExpand()"
+    @keydown.space.prevent="handleExpand()"
   >
     <header
       class="flex items-center justify-between px-2"
