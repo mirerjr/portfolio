@@ -58,7 +58,11 @@ import TimelineItem from "./components/TimelineItem.vue";
     <BaseSection title="Experiência" class="order-4 col-span-2">
       <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
         <TimelineItem
-          date="06/2023 - Hoje"
+          date="04/2025 - Hoje"
+          content="Analista de Sistemas Pleno (Inovatec-JP)"
+        />
+        <TimelineItem
+          date="06/2023 - 03/2025"
           content="Analista de Sistemas Pleno (SergipeTec)"
         />
         <TimelineItem
