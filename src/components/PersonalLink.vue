@@ -1,4 +1,5 @@
 <script setup>
+import { trackEvent } from "../utils/analytics";
 defineProps({
   link: {
     type: String,
@@ -22,6 +23,8 @@ defineProps({
       target="_blank"
       rel="noopener"
       class="link-border-underline relative box-border flex w-fit items-center gap-x-2 rounded-sm pr-0.5"
+      @click="trackEvent('personal-link-click', label)"
+      @keydown.enter.prevent="trackEvent('personal-link-click', label)"
     >
       <fontAwesomeIcon :icon="icon" class="w-5" />
       {{ label }}

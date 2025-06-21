@@ -1,5 +1,6 @@
 <script setup>
 import { computed, useTemplateRef } from "vue";
+import { trackEvent } from "../utils/analytics";
 
 const emit = defineEmits(["expand"]);
 
@@ -36,8 +37,10 @@ const descriptionText = computed(() =>
 
 function handleExpand() {
   if (!props.expanded) {
+    trackEvent("project-expand", props.title);
     emit("expand", props.title);
   } else if (props.link) {
+    trackEvent("project-link-click", props.title);
     window.open(props.link, "_blank");
   }
 }
