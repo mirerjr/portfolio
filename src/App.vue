@@ -9,15 +9,23 @@ import TimelineItem from "./components/TimelineItem.vue";
 <template>
   <header class="grid w-full grid-cols-12 p-4">
     <div
-      class="col-span-full flex flex-col gap-4 lg:col-start-2 lg:col-end-10 xl:col-start-3 xl:col-end-6 2xl:col-start-4 2xl:col-end-6"
+      class="col-span-full flex flex-col gap-4 lg:col-start-2 lg:col-end-10 xl:col-start-3 xl:col-end-7 2xl:col-start-4 2xl:col-end-7"
     >
       <h1 class="text-3xl font-bold">
         Mirer Balbino
-        <span class="block leading-3 font-normal"> de Andrade Junior </span>
+        <span class="block leading-3 font-normal">de Andrade Junior</span>
       </h1>
-      <p class="text-xl">
-        <fontAwesomeIcon icon="fa-solid fa-square" /> Desenvolvedor Full stack
-      </p>
+
+      <div class="flex flex-col gap-1">
+        <p class="text-xl font-semibold">
+          <fontAwesomeIcon icon="fa-solid fa-square" />
+          Desenvolvedor Backend Pleno
+        </p>
+
+        <p class="text-sm text-zinc-600">
+          Java · Spring Boot · TypeScript · NestJS · Sistemas de negócio
+        </p>
+      </div>
     </div>
   </header>
   <main
@@ -25,9 +33,10 @@ import TimelineItem from "./components/TimelineItem.vue";
   >
     <BaseSection title="Sobre mim" class="order-2 col-span-2 sm:order-1">
       <p>
-        Experiência no desenvolvimento de aplicações REST usando Java (Grails,
-        Spring) e JavaScript (Vue.js). Proativo e metódico, busco entregar
-        soluções que otimizem processos e melhorem a experiência do usuário.
+        Desenvolvedor Backend Pleno com mais de 5 anos de experiência em
+        sistemas financeiros e jurídicos. Tenho foco em APIs, integrações,
+        automações operacionais e regras de negócio complexas usando Java,
+        Spring Boot, TypeScript, NestJS e bancos relacionais.
       </p>
     </BaseSection>
     <BaseSection
@@ -56,22 +65,18 @@ import TimelineItem from "./components/TimelineItem.vue";
       <ProjectsSection />
     </BaseSection>
     <BaseSection title="Experiência" class="order-4 col-span-2">
-      <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
+      <BaseTimeline header="Del.tech">
         <TimelineItem
-          date="04/2025 - Hoje"
-          content="Analista de Sistemas Pleno (Inovatec-JP)"
-        />
-        <TimelineItem
-          date="06/2023 - 03/2025"
-          content="Analista de Sistemas Pleno (SergipeTec)"
-        />
-        <TimelineItem
-          date="12/2020 - 06/2023"
-          content="Desenvolvedor (Procuradoria)"
+          date="07/2025 - Hoje"
+          content="Desenvolvimento de sistemas financeiros, módulos de compliance/antifraude, engine de risco, auditoria de logs e automações operacionais."
         />
       </BaseTimeline>
-      <BaseTimeline header="Instituto Federal de Sergipe (IFS)">
-        <TimelineItem date="2019" content="Trainee - suporte" />
+
+      <BaseTimeline header="Procuradoria Geral do Município de Aracaju">
+        <TimelineItem
+          date="2020 - 2025"
+          content="Desenvolvimento e evolução de sistemas jurídicos, integrações com tribunais, automação de processos, refatorações críticas e apoio técnico à equipe."
+        />
       </BaseTimeline>
     </BaseSection>
     <BaseSection title="Escolaridade" class="order-5">
