@@ -1,6 +1,7 @@
 <script setup>
 import { trackEvent } from "../utils/analytics";
-defineProps({
+
+const props = defineProps({
   link: {
     type: String,
     required: true,
@@ -13,7 +14,22 @@ defineProps({
     type: String,
     required: true,
   },
+  channel: {
+    type: String,
+    required: true,
+  },
+  placement: {
+    type: String,
+    required: true,
+  },
 });
+
+function handleClick() {
+  trackEvent("contact-click", {
+    channel: props.channel,
+    placement: props.placement,
+  });
+}
 </script>
 
 <template>
@@ -22,21 +38,11 @@ defineProps({
       :href="link"
       target="_blank"
       rel="noopener"
-      class="link-border-underline relative box-border flex w-fit items-center gap-x-2 rounded-sm pr-0.5"
-      @click="trackEvent('personal-link-click', label)"
-      @keydown.enter.prevent="trackEvent('personal-link-click', label)"
+      class="relative box-border flex w-fit items-center gap-x-2 rounded-sm border border-transparent px-1 py-0.5 transition-colors duration-150 after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b after:border-current after:duration-300 after:ease-out hover:border-current hover:after:w-full focus-visible:border-current focus-visible:ring-2 focus-visible:ring-main/30 focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:after:w-full"
+      @click="handleClick"
     >
       <fontAwesomeIcon :icon="icon" class="w-5" />
       {{ label }}
     </a>
   </li>
 </template>
-
-<style scoped>
-@reference "../style.css";
-
-.link-border-underline {
-  @apply border-1 border-transparent transition-colors duration-150 hover:border-main focus:border-1 focus:border-main focus:outline-0;
-  @apply after:absolute after:bottom-0 after:left-0 after:w-0 after:border-b-1 after:border-main after:duration-300 after:ease-out hover:after:w-full focus:after:w-full;
-}
-</style>

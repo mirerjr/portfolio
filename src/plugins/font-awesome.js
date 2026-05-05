@@ -1,11 +1,6 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import {
-  faEnvelope,
-  faExternalLink,
-  faSquare,
-} from "@fortawesome/free-solid-svg-icons";
-import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import { faEnvelope, faSquare } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
   // Brand
@@ -14,11 +9,7 @@ library.add(
 
   // Solid
   faEnvelope,
-  faExternalLink,
   faSquare,
-
-  // Regular
-  faCircle,
 );
 
 export default library;

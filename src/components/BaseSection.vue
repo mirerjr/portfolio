@@ -1,15 +1,19 @@
 <script setup>
 defineProps({
+  id: {
+    type: String,
+    required: false,
+  },
   title: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 </script>
 
 <template>
-  <section class="flex flex-col gap-4">
-    <h2 class="text-xl font-bold">{{ title }}</h2>
+  <section :id="id" class="flex flex-col gap-4 text-lg">
+    <h2 v-if="title" class="text-2xl font-semibold">{{ title }}</h2>
     <slot></slot>
   </section>
 </template>
